@@ -2,19 +2,28 @@
 <html>
   <head>
     <title>Restaurants</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
   <body>
     <header>
-      <h3>gTables</h3>
+      <h2>gTables</h2>
       <nav>
         <a href="/new">New Restaurant</a>
       </nav>
     </header>
     <main>
-      <% restaurants.forEach(function(restaurant) { console.log(restaurant);%>
-      <section>
+      <% restaurants.forEach(function(restaurant) { %>
+      <section  id = "restaurant">
+        <span><%= restaurant.name %></span>
         <img src="<%= restaurant.image %>"/>
+        <span><%= restaurant.cuisine + " Cuisine" %></span>
+        <span><%= restaurant.city + ", " + restaurant.state %></span>
+        <section id = "rating">
+          <% for (i=0; i<= restaurant.rating; i++) { %>
+            <i class="fa fa-star"></i>
+          <% }; %>
+        </section>
       </section>
       <% }); %>
     </main>
