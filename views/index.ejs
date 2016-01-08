@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Restaurants</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <h3>gTables</h3>
+      <nav>
+        <a href="/new">New Restaurant</a>
+      </nav>
+    </header>
+    <main>
+      <% restaurants.forEach(function(restaurant) { console.log(restaurant);%>
+      <section>
+        <img src="<%= restaurant.image %>"/>
+          </section>
+      <% }); %>
+
+
+
+    </main>
   </body>
 </html>

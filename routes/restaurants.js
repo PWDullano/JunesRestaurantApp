@@ -13,7 +13,8 @@ function restaurants() {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   restaurants().then(function(results) {
-    res.render('index', {restaurants:results});
+    console.log(results);
+    res.render('index', {restaurants:results);
   });
 });
 
