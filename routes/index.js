@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('pg')
+var db = require('pg');
 var knex = require ('knex')({
   client:'pg',
   connection: 'postgres://localhost/venues'
@@ -13,11 +13,12 @@ function restaurants() {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   restaurants().then(function(results) {
+    console.log("in / get")
     res.render('index', {restaurants:results});
   });
 });
 
-router.get ('/new/', function(req, res, next) {
+router.get ('/new', function(req, res, next) {
   res.render('new');
 })
 
@@ -35,26 +36,30 @@ router.post ('/new', function(req, res, next) {
 })
 
 router.get('/:id', function(req, res, next) {
+  console.log("in router get for id");
   console.log('id = ', req.params.id);
   restaurants().where('id', req.params.id).then(function(results) {
-    console.log('results = ', results[0]);
+    console.log('results = ', results);
     res.render('show', {restaurant:results[0]});
   })
 })
 
 router.get('/:id/edit', function(req, res, next) {
+  console.log("in router get for id/edit");
   restaurants().where('id', req.params.id).then(function(results) {
     res.render('edit', results[0]);
   })
 })
 
 router.post('/:id', function(req, res, next) {
+  console.log("in router post for id");
   restaurants().where('id', req.params.id).update(req.body).then(function() {
     res.redirect('/');
   })
 })
 
 router.post('/:id/delete', function(req, res, next) {
+  console.log("in router post for id/delete");
   restaurants().where('id', req.params.id).update(req.body).del().then(function() {
     res.redirect('/');
   })

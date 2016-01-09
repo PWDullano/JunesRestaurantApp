@@ -52,18 +52,48 @@ nav{
   height: 20px;
 }
 
-img {
-  display: block;
-  height: 50%;
-  margin: 0 auto;
-}
-
 span {
   display: block;
 }
 
 #rating {
   text-align: right;
+}
+
+#restaurantImage {
+  display: inline-flex;
+  align-items: center;
+  justify-content:center;
+  vertical-align: bottom;
+  width: 45%;
+  height: 100%;
+  margin: 5px 5px 0px 0px;
+}
+
+#restaurantInfo {
+  display: inline-flex;
+  align-items: center;
+  justify-content:center;
+  vertical-align: bottom;
+  width: 45%;
+  height: 100%;
+  margin: 5px 5px 0px 0px;
+}
+
+#restaurantImage img {
+  display:inline-block;/*remove later*/
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  /*margin: 0 auto;*/
+  border: solid;
+  vertical-align: center;
+}
+
+img {
+  display: block;
+  height: 50%;
+  margin: 0 auto;
 }
 
 .fa {

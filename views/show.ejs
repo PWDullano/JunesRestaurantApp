@@ -10,10 +10,18 @@
       <h2><%= restaurant.name %></h2>
     </header>
     <main>
-      <section  id = "restaurantImage">
-
+      <section id = "restaurantImage">
+        <img src="<%=restaurant.image%>" alt="restaurant image">
       </section>
       <section id = "restaurantInfo">
+        <section>
+        <span><%=restaurant.cuisine+ ' cuisine'%></span><br>
+        <span>Located in <%=restaurant.city%>,
+        <%=restaurant.state%></span><br>
+        <p><%=restaurant.description%></p>
+        <button href = "">Edit</button>
+        <button href = "">Delete</button>
+        </section>
       </section>
     </main>
   </body>
