@@ -15,8 +15,8 @@
     <main>
       <% restaurants.forEach(function(restaurant) { %>
       <section  id = "restaurant">
-        <% var nameLink = '/:' + restaurant.id +'/edit'; %>
-        <a href = <% nameLink%>
+        <% var nameLink = '/' + restaurant.id; console.log(nameLink);%>
+        <a href = "<%= '/' + restaurant.id%>"
         <span><%= restaurant.name %></span></a>
         <img src="<%= restaurant.image %>"/>
         <span><%= restaurant.cuisine + " Cuisine" %></span>

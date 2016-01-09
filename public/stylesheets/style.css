@@ -37,6 +37,9 @@ header h2 {
 
 header a {
   color: white;
+}
+
+a {
   text-decoration: none;
 }
 

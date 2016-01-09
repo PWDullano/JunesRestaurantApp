@@ -1,7 +1,7 @@
 #Create a Restaurant Listing!
 
 You're going to create your first project using all the skills you learned this week and from previous weeks!
-*All Images are provided for you in the images folder! Feel free to use your own tho!* 
+*All Images are provided for you in the images folder! Feel free to use your own tho!*
 
 ##1. Wire it Up!
 Get an express app wired up and ready
@@ -12,13 +12,13 @@ Get your server going!
 ##2. Index Page
 I should be able to see all the restaurants in my database on this page.
 
-![image](images/index.jpg)
+![image](public/images/index.jpg)
 
 ...COMMIT...
 
 ##3. New Restaurant
 When the user clicks the 'new restaurant' link they are directed to a form.
-![image](images/new.jpg)
+![image](public/images/new.jpg)
 * When the user clicks 'Submit' the page should redirect to the index, and the new restaurant should show up on your index page.
 * Check your database to make sure the new restaurant information has been added!
 
@@ -26,7 +26,7 @@ When the user clicks the 'new restaurant' link they are directed to a form.
 
 ##4.Show Restaurant
 When a user clicks on the NAME of the restaurant, they are taken to a show page where they see details about the restaurant
-![image](images/show.jpg)
+![image](public/images/show.jpg)
 * Remember: attention to detail is important!
 
 ...COMMIT...
@@ -34,7 +34,7 @@ When a user clicks on the NAME of the restaurant, they are taken to a show page 
 ##5. Edit Restaurant
 * When a user clicks to edit the restaurant information they are taken a form that is already filled with existing information
 * Once edited, the user should be redirected to the index page
-![image](images/edit.jpg)
+![image](public/images/edit.jpg)
 * Be sure to check your database to see the changes are being implemented!
 
 ...COMMIT...
