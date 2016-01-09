@@ -15,14 +15,18 @@
     <main>
       <% restaurants.forEach(function(restaurant) { %>
       <section  id = "restaurant">
-        <span><%= restaurant.name %></span>
+        <% var nameLink = '/:' + restaurant.id +'/edit'; %>
+        <a href = <% nameLink%>
+        <span><%= restaurant.name %></span></a>
         <img src="<%= restaurant.image %>"/>
         <span><%= restaurant.cuisine + " Cuisine" %></span>
         <span><%= restaurant.city + ", " + restaurant.state %></span>
         <section id = "rating">
+
           <% for (i=0; i<= restaurant.rating; i++) { %>
             <i class="fa fa-star"></i>
           <% }; %>
+
         </section>
       </section>
       <% }); %>

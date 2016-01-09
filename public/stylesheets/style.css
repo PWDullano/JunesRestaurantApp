@@ -66,3 +66,17 @@ span {
 .fa {
   color: #FEED42;
 }
+
+fieldset
+{
+  border: 1px solid #black;
+  width: 20em
+}
+
+legend
+{
+  color: black;
+  /*background: #ffa20c;*/
+  /*border: 1px solid black;*/
+  padding: 2px 6px
+}

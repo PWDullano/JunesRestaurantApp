@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Restaurant</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+  </head>
+  <body>
+    <header>
+      <h2>New Restaurant</h2>
+    </header>
+    <main>
+      <form class="" action="new" name = "new" method="post">
+        <fieldset>
+          <legend>Create Restaurant</legend>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" value="Restaurant Name"><br>
+          <label for="city">Location</label>
+          <input type="text" name="city" id="city" value="City"><br>
+          <select name="state">
+            <option value="AL">AL</option>
+            <option value="AK">AK</option>
+          </select><br>
+          <select name="cuisine">
+            <option placeholder="American">American</option>
+            <option placeholder="Mexican">Mexican</option>
+            <option placeholder="Thai">Thai</option>
+            <option placeholder="Vietnamese">Vietnamese</option>
+          </select><br>
+          <input type="radio" name="rating" value="1" checked>
+          <input type="radio" name="rating" value="2">
+          <input type="radio" name="rating" value="3">
+          <input type="radio" name="rating" value="4">
+          <input type="radio" name="rating" value="5"><br>
+          <label for="image">Image</label>
+          <input type="text" name="image" id="image" placeholder="Image URL"><br>
+          <input type="textarea" name = "textarea" id = "textarea" placeholder = "Short Bio">
+          <input type="submit" value="Submit">
+          <input type="submit" value="Cancel">
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>

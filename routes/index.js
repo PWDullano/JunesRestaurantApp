@@ -17,4 +17,45 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get ('/new/', function(req, res, next) {
+  res.render('new');
+})
+
+router.post ('/new', function(req, res, next) {
+  var newObject =
+  {name:req.body.name,
+  cuisine: req.body.cuisine,
+  city: req.body.city,
+  state: req.body.state,
+  rating: req.body.rating,
+  image: req.body.image};
+  restaurants().insert(newObject).then(function(results) {
+    res.redirect('/');
+  })
+})
+
+router.get('/:id', function(req, res, next) {
+  restaurants().where('id', req.param.id).then(function(results) {
+    res.render(show.ejs, results[0]);
+  })
+})
+
+router.get('/:id/edit', function(req, res, next) {
+  restaurants().where('id', req.param.id).then(function(results) {
+    res.render(edit.ejs, results[0]);
+  })
+})
+
+router.post('/:id', function(req, res, next) {
+  restaurants().where('id', req.param.id).update(req.body).then(function() {
+    res.redirect('/');
+  })
+})
+
+router.post('/:id/delete', function(req, res, next) {
+  restaurants().where('id', req.param.id).update(req.body).del().then(function() {
+    res.redirect('/');
+  })
+})
+
 module.exports = router;
