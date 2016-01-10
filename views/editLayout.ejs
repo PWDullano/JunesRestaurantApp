@@ -8,7 +8,7 @@
     <input type="text" name="city" id="city"
     value = "<%= restaurant.city %>"> <br>
     <select name="state" id = "state">
-    <% console.log('states  = ', states); states.forEach(function(state) { %>
+    <% states.forEach(function(state) { %>
       <option value='<%= state %>'
         <% if(route!='/new') {
           if (restaurant.state === state) { %>
@@ -26,17 +26,21 @@
           <% }} %>><%=cuisine%></option>
     <% }) %>
     </select><br>
-    <input type="radio" name="rating" value="1" checked>
-    <input type="radio" name="rating" value="2">
-    <input type="radio" name="rating" value="3">
-    <input type="radio" name="rating" value="4">
-    <input type="radio" name="rating" value="5"><br>
+    <% for (i=0; i<ratings; i++) { %>
+
+    <input type="radio" name="rating" value=<%=i+1%> 
+    <% if (restaurant.rating === (i+1)) { %>
+      checked = "checked";
+    <% } %>>
+    <% } %><br>
+
     <label for="image">Image</label>
     <input type="text" name="image" id="image"
     value = "<%=restaurant.image%>"<br>
+
     <input type="textarea" name = "description" id = "description"
     value = "<%=restaurant.description%>"<br>
-<%console.log( 'route from form = ', route); %><br>
+    <br>
     <input type="submit" value="Submit" class = "goButton">
     <a href="<%= '/' + restaurant.id%>">
       <button type = "button" class = "stopButton">Cancel</button>
