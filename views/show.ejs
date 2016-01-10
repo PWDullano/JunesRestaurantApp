@@ -20,6 +20,13 @@
         <span>Located in <%= restaurant.city%>,
         <%= restaurant.state%></span><br>
         <p><%= restaurant.description%></p>
+        <section>
+          <span>"Rating:"</span>
+          <%for (i=0; i< restaurant.rating; i++)
+          { %>
+           <i class="fa fa-star"></i>
+         <% }; %>
+        </section>
         <a href="<%= '/' + restaurant.id + '/edit'%>">
           <button>Edit</button>
         </a>

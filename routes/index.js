@@ -42,15 +42,7 @@ router.get ('/new', function(req, res, next) {
 
 router.post ('/new', function(req, res, next) {
   console.log('in New post', 'req.body=', req.body);
-  var newObject =
-  {name:req.body.name,
-  cuisine: req.body.cuisine,
-  city: req.body.city,
-  state: req.body.state,
-  rating: req.body.rating,
-  image: req.body.image,
-  description: req.body.description};
-  restaurants().insert(newObject).then(function(results) {
+  restaurants().insert(req.body).then(function(results) {
     res.redirect('/');
   })
 })

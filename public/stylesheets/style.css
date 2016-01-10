@@ -113,3 +113,13 @@ legend
   /*border: 1px solid black;*/
   padding: 2px 6px
 }
+
+.goButton
+{
+  background-color: #7FC378;
+}
+
+.stopButton
+{
+  background-color: #F06C53;
+}
