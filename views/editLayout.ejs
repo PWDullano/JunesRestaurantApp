@@ -1,20 +1,22 @@
-
-<form class="" action="new" name = "new" method="post">
+<form class="" action="<%=route %>" name = "new" method="post">
   <fieldset>
     <legend>Create Restaurant</legend>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" value="Restaurant Name"><br>
-    <label for="city">Location</label>
-    <input type="text" name="city" id="city" value="City"><br>
-    <select name="state">
-      <option value="AL">AL</option>
-      <option value="AK">AK</option>
+    <label for="name">Name</label><br>
+    <input type="text" name="name" id="name"
+    value = "<%= restaurant.name %>"> <br>
+    <label for="city">Location</label><br>
+    <input type="text" name="city" id="city"
+    value = "<%= restaurant.city %>"> <br>
+    <select name="state" id = "state">
+    <% states.forEach(function(state) { %>
+      <option value='<%= state %>'> <%= state %></option>
+    <% }) %>
     </select><br>
-    <select name="cuisine">
-      <option placeholder="American">American</option>
-      <option placeholder="Mexican">Mexican</option>
-      <option placeholder="Thai">Thai</option>
-      <option placeholder="Vietnamese">Vietnamese</option>
+    <label for="cuisine">Cuisine</label><br>
+    <select name = "cuisine" id="cuisine">
+    <% cuisines.forEach(function(cuisine) { %>
+      <option value ='<%= cuisine %>'> <%=cuisine%></option>
+    <% }) %>
     </select><br>
     <input type="radio" name="rating" value="1" checked>
     <input type="radio" name="rating" value="2">
@@ -22,8 +24,11 @@
     <input type="radio" name="rating" value="4">
     <input type="radio" name="rating" value="5"><br>
     <label for="image">Image</label>
-    <input type="text" name="image" id="image" placeholder="Image URL"><br>
-    <input type="textarea" name = "textarea" id = "textarea" placeholder = "Short Bio">
+    <input type="text" name="image" id="image"
+    value = "<%=restaurant.image%>"<br>
+    <input type="textarea" name = "description" id = "description"
+    value = "<%=restaurant.description%>"<br>
+<%console.log( 'route from form = ', route); %><br>
     <input type="submit" value="Submit">
     <input type="submit" value="Cancel">
   </fieldset>

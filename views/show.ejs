@@ -15,12 +15,17 @@
       </section>
       <section id = "restaurantInfo">
         <section>
+          <%console.log('in show***',restaurant); %>
         <span><%=restaurant.cuisine+ ' cuisine'%></span><br>
-        <span>Located in <%=restaurant.city%>,
-        <%=restaurant.state%></span><br>
-        <p><%=restaurant.description%></p>
-        <button href = "<%=restaurant.id%>/edit">Edit</button>
-        <button href = "<%=restaurant.id%>/delete">Delete</button>
+        <span>Located in <%= restaurant.city%>,
+        <%= restaurant.state%></span><br>
+        <p><%= restaurant.description%></p>
+        <a href="<%= '/' + restaurant.id + '/edit'%>">
+          <button>Edit</button>
+        </a>
+        <a href="<%= '/' + restaurant.id + '/delete'%>">
+          <button>Delete</button>
+        </a>
         </section>
       </section>
     </main>
