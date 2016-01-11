@@ -1,6 +1,12 @@
 <form class="" action="<%=route %>" method="post">
   <fieldset>
-    <legend>Create Restaurant</legend>
+    <legend>
+      <% if (route!='/new') { %>
+        Edit
+      <% } else { %>
+        New
+      <% } %>
+      Restaurant</legend>
     <label for="name">Name</label><br>
     <input type="text" name="name" id="name"
     value = "<%= restaurant.name %>"> <br>
@@ -23,12 +29,13 @@
         <% if(route!='/new') {
           if (restaurant.cuisine === cuisine) { %>
             selected = 'selected'
-          <% }} %>><%=cuisine%></option>
+          <% }} %>>
+          <%=cuisine%></option>
     <% }) %>
     </select><br>
     <% for (i=0; i<ratings; i++) { %>
 
-    <input type="radio" name="rating" value=<%=i+1%> 
+    <input type="radio" name="rating" value=<%=i+1%>
     <% if (restaurant.rating === (i+1)) { %>
       checked = "checked";
     <% } %>>
