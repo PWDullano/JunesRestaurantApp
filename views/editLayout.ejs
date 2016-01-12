@@ -24,7 +24,7 @@
       <% }) %>
       </select><br><br>
       <label for="cuisine">Cuisine</label><br>
-      <select name = "cuisine" id="cuisine" onchange="$(alert('here'); $('#image').attr('src','../images/pho.png'));">
+      <select name = "cuisine" id="cuisine" onchange="alert('here'); $('#image').attr('src','../images/pho.png'));">
       <% cuisines.forEach(function(cuisine) { %>
         <option value ='<%= cuisine.name %>'
           <% if(route!='/new') {

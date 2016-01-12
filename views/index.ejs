@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <h2>gTables</h2>
+      <h1>gTables</h1>
       <nav>
         <a href="/new">New Restaurant</a>
       </nav>
@@ -16,7 +16,6 @@
       <div id = "restaurantGallery">
         <% restaurants.forEach(function(restaurant) { %>
         <section  id = "restaurant">
-          <% var nameLink = '/' + restaurant.id; console.log(nameLink);%>
           <a href = "<%= '/' + restaurant.id%>"
           <span><%= restaurant.name %></span></a>
           <img src="<%= restaurant.image %>"/>
