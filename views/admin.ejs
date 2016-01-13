@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+  </head>
+  <body>
+    <header>
+    </header>
+    <main>
+
+      <form class="restaurantInfo" action="/admin" method="post">
+        <fieldset>
+          <legend>Employees %></legend>
+          <section class = "scrollable">
+            <% restaurants.forEach(function(restaurant) { %>
+              <section  id = "restaurant">
+                <span><%= restaurant.name %></span>
+                <ul>
+                  <% employees.forEach(function(employee) { %>
+                    <li>
+                      <%= employee.first_name +' ' + employee.last_name %>
+                    </li>
+                  <% }); %>
+                </ul>
+              </section>
+            <% }); %>
+          </section> -->
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>

@@ -25,6 +25,17 @@ router.post ('/new', function(req, res, next) {
   })
 })
 
+router.get ('/admin', function(req, res, next) {
+    db.RestaurantEmployees.then(function(results) {
+      console.log('results = ', results);
+      res.render('admin', {restaurantEmployees:results};
+    )}
+  )});
+
+router.post ('/admin', function(req, res, next) {
+    res.redirect('/');
+  });
+
 router.get('/:id', function(req, res, next) {
   console.log('***reqParamId = ', req.params.id);
   db.getRestaurant(req.params.id).then(function(results) {

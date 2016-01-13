@@ -9,6 +9,14 @@ function restaurants() {
   return knex('restaurants');
 }
 
+function employees() {
+  return knex('employees')
+}
+
+function dbRestaurantEmployees() {
+  return knex.select(first_name, last_name, restaurants.name).from('restaurants').join('restaurants.restaurantID, employees.restID');
+};
+
 function restaurantDefaults() {
  return (knex('restaurants').columnInfo().then(function (columns) {
     var restaurantObject = {};

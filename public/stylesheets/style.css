@@ -41,6 +41,10 @@ header a {
   color: white;
 }
 
+header h1 {
+  margin: 5px;
+}
+
 a {
   text-decoration: none;
 }
