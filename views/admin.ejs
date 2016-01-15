@@ -15,11 +15,20 @@
         <fieldset>
           <legend>Employees %></legend>
           <section class = "scrollable">
-            <% restaurants.forEach(function(restaurant) { %>
-              <section  id = "restaurant">
-                <span><%= restaurant.name %></span>
-                <ul>
-                  <% employees.forEach(function(employee) { %>
+            <%
+              var newRestaurantId = true;
+             restaurantEmployees.forEach(function(restaurantEmployee) {
+              console.log(restaurantEmployee);
+              if (restaurantEmployee.id != newRestaurantId) {
+              var restaurantElementId = 'restaurant' + restaurantEmployee.restaurantID; %>
+              <ul id = "restaurant"
+                <%= restaurantEmployeeId%> >
+                <li><%=restaurantEmployee.first_name%></li>
+              </ul>
+            } %>
+            document.getElementById(<%= restaurantElementID %> <%restaurantEmployee.firstName + ' ' +  restaurantEmployee.lastName %>
+            document.getElementById("restaurant"<%=restaurant.id%>).append
+                 employees.forEach(function(employee) { %>
                     <li>
                       <%= employee.first_name +' ' + employee.last_name %>
                     </li>

@@ -9,12 +9,8 @@ function restaurants() {
   return knex('restaurants');
 }
 
-function employees() {
-  return knex('employees')
-}
-
-function dbRestaurantEmployees() {
-  return knex.select(first_name, last_name, restaurants.name).from('restaurants').join('restaurants.restaurantID, employees.restID');
+function restaurantEmployees() {
+  return (knex.select('employees.first_name', 'employees.last_name', 'restaurants.name', 'restaurants.id').from('restaurants').join('employees', 'restaurants.id', 'employees.restaurantID'));
 };
 
 function restaurantDefaults() {
@@ -46,6 +42,7 @@ function deleteRestaurant(id) {
 module.exports =
 {restaurants: restaurants,
 restaurantDefaults: restaurantDefaults,
+restaurantEmployees: restaurantEmployees,
 insertRestaurant: insertRestaurant,
 getRestaurant: getRestaurant,
 updateRestaurant: updateRestaurant,

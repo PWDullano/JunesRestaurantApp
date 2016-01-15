@@ -26,11 +26,12 @@ router.post ('/new', function(req, res, next) {
 })
 
 router.get ('/admin', function(req, res, next) {
-    db.RestaurantEmployees.then(function(results) {
-      console.log('results = ', results);
-      res.render('admin', {restaurantEmployees:results};
-    )}
-  )});
+  console.log('in admin page');
+    db.restaurantEmployees().then(function(results) {
+      console.log('index.js rest/emp results = ', results);
+      res.render('admin', {restaurantEmployees:results});
+    })
+  });
 
 router.post ('/admin', function(req, res, next) {
     res.redirect('/');
