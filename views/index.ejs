@@ -9,7 +9,7 @@
     <header>
       <h1>gTables</h1>
       <nav>
-        <a href="/admin">Admin</a>
+        <a href="/admin/show">Admin</a>
         <a href="/new">New Restaurant</a>
       </nav>
     </header>
@@ -23,11 +23,7 @@
           <span><%= restaurant.cuisine + " Cuisine" %></span>
           <span><%= restaurant.city + ", " + restaurant.state %></span>
           <section id = "rating">
-
-            <% for (i=0; i< restaurant.rating; i++) { %>
-              <i class="fa fa-star"></i>
-            <% }; %>
-
+            <%- include ratingLayout.ejs %>
           </section>
         </section>
         <% }); %>

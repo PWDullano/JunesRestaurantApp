@@ -81,3 +81,6 @@ If the user clicks to delete a restaurant the restaurant will be deleted from th
       * All items should have proper validations
   * e. Once the reservation is submitted, that time should disappear from the available times to reserve
   * f. Show some indication that reservations are unable
+
+ERD:
+![image](public/images/ERD.jpg)

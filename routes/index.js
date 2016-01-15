@@ -27,9 +27,9 @@ router.post ('/new', function(req, res, next) {
 
 router.get ('/admin', function(req, res, next) {
   console.log('in admin page');
-    db.restaurantEmployees().then(function(results) {
-      console.log('index.js rest/emp results = ', results);
-      res.render('admin', {restaurantEmployees:results});
+    db.restaurantEmployees().then(function(restaurantEmployees) {
+      console.log('index.js rest/emp results = ', restaurantEmployees);
+      res.render('admin/index', {restaurantEmployees:restaurantEmployees});
     })
   });
 
@@ -39,8 +39,9 @@ router.post ('/admin', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   console.log('***reqParamId = ', req.params.id);
-  db.getRestaurant(req.params.id).then(function(results) {
-    res.render('show', {restaurant:results[0]});
+  db.getRestaurant(req.params.id).then(function(restaurants) {db.getEmployees(req.params.id).then(function(employees) {
+    res.render('show', {restaurant:restaurants[0], employees:employees});
+    })
   })
 })
 
