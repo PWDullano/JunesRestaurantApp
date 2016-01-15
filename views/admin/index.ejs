@@ -7,50 +7,24 @@
   </head>
   <body>
     <header>
-      <h2><%= restaurant.name %></h2>
+      <h1>Admin</h1>
     </header>
     <main>
-      <section>
-        <section id = "restaurantImage">
-          <img src="<%=restaurant.image%>" alt="restaurant image">
-        </section>
-        <section>
-          <table>
-            <th>
-              Employees
-            </th>
-            <% employees.forEach(function(restaurant) { %>
-            <tr>
-              <td><%=employee.first_name</td>
-              <td><%=employee.last_name</td>
-              <td><%=employee.position</td>
-            <tr>
-            </tr>
-          </table>
-        </section>
-      </section>
-      <section id = "restaurantInfo">
-        <section>
-          <%console.log('in show***',restaurant); %>
-        <span><%=restaurant.cuisine+ ' cuisine'%></span><br>
-        <span>Located in <%= restaurant.city%>,
-        <%= restaurant.state%></span><br>
-        <p><%= restaurant.description%></p>
-        <section>
-          <span>Rating:</span>
-          <%for (i=0; i< restaurant.rating; i++)
-          { %>
-           <i class="fa fa-star"></i>
-         <% }; %>
-        </section>
-        <a href="<%= '/' + restaurant.id + '/edit'%>">
-          <button class = "goButton">Edit</button>
-        </a>
-        <a href="<%= '/' + restaurant.id + '/delete'%>">
-          <button class = "stopButton">Delete</button>
-        </a>
-        </section>
-      </section>
+
+      <div id = "restaurantGalleryAdmin">
+        <% restaurants.forEach(function(restaurant) { %>
+          <section  id = "foobar">
+            <span><%= restaurant.name %></span></a>
+            <%- include ../layouts/ratingLayout.ejs %>
+          <a href = "<%= '/' + restaurant.id + '/admin/edit' %>">
+            <button type = "button" class = "goButton">Edit</button>
+          </a>
+          <a href = "<%= '/' + restaurant.id + '/admin/delete' %>">
+            <button type = "button" class = "stopButton">Delete</button>
+          </a>
+          </section>
+          <% }); %>
+      </div>
     </main>
   </body>
 </html>

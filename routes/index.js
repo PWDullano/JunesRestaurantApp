@@ -27,33 +27,22 @@ router.post ('/new', function(req, res, next) {
 
 router.get ('/admin', function(req, res, next) {
   console.log('in admin page');
-    db.restaurantEmployees().then(function(restaurantEmployees) {
-      console.log('index.js rest/emp results = ', restaurantEmployees);
-      res.render('admin/index', {restaurantEmployees:restaurantEmployees});
+    db.restaurants().then(function(restaurants) {
+      res.render('admin/index', {restaurants:restaurants});
     })
-  });
-
-router.post ('/admin', function(req, res, next) {
-    res.redirect('/');
   });
 
 router.get('/:id', function(req, res, next) {
   console.log('***reqParamId = ', req.params.id);
-  db.getRestaurant(req.params.id).then(function(restaurants) {db.getEmployees(req.params.id).then(function(employees) {
+  db.restaurant(req.params.id).then(function(restaurants) {db.restaurantEmployees(req.params.id).then(function(employees) {
     res.render('show', {restaurant:restaurants[0], employees:employees});
     })
   })
 })
 
 router.get('/:id/edit', function(req, res, next) {  console.log('get id/edit');
-  db.getRestaurant(req.params.id).then(function(results) {
+  db.restaurant(req.params.id).then(function(results) {
     res.render('edit', {route:req.originalUrl, restaurant:results[0], states:states, cuisines:cuisines, ratings:ratings});
-  })
-})
-
-router.get('/:id/delete', function(req, res, next) {
-  db.deleteRestaurant(req.params.id).then(function(results) {
-    res.redirect('/');
   })
 })
 
@@ -63,9 +52,34 @@ router.post('/:id/edit', function(req, res, next) {
   })
 })
 
+router.get('/:id/delete', function(req, res, next) {
+  db.deleteRestaurant(req.params.id).then(function(results) {
+    res.redirect('/');
+  })
+})
+
 router.post('/:id/delete', function(req, res, next) {
   db.deleteRestaurant(req.params.id).then(function() {
     res.redirect('/');
+  })
+})
+
+router.get('/:id/admin/edit', function(req, res, next) {
+  db.restaurant(req.params.id).then(function(restaurant) {
+    db.restaurantEmployees(req.params.id).then(function(employees) {
+    res.render('admin/edit',
+    {route: req.originalUrl,
+    restaurant: restaurants[0],
+    states: states,
+    cuisines: cuisines,
+    ratings: ratings});
+    })
+  })
+})
+
+router.post('/:id/admin/edit', function(req, res, next) {
+  db.updateRestaurant(req.params.id, req.body).then(function() {
+    res.redirect('/admin');
   })
 })
 

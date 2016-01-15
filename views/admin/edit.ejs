@@ -12,6 +12,23 @@
     </header>
     <main>
       <%- include layouts/editLayout.ejs %>
+
+      <table>
+        <a href="/admin/employeeNew">
+          <button>New Employee</button>
+        </a>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Position</th>
+        </tr>
+        <% employees.forEach(function(employees) { %>
+        <tr>
+          <td><%=employee.first_name></td>
+          <td><%=employee.last_name></td>
+          <td><%=employee.position></td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>

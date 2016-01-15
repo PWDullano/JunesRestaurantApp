@@ -31,6 +31,10 @@ function getRestaurant(id) {
   return(restaurants().where('id', id))
 }
 
+function getEmployee(id) {
+  return(employees().join(restaurants) where('id', id))
+}
+
 function updateRestaurant(id, restaurant) {
   return(restaurants().where('id', id).update(restaurant));
 }
@@ -44,6 +48,6 @@ module.exports =
 restaurantDefaults: restaurantDefaults,
 restaurantEmployees: restaurantEmployees,
 insertRestaurant: insertRestaurant,
-getRestaurant: getRestaurant,
+restaurant: restaurant,
 updateRestaurant: updateRestaurant,
 deleteRestaurant: deleteRestaurant}
