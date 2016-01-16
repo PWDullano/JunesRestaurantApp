@@ -9,11 +9,10 @@ function restaurants() {
   return knex('restaurants');
 }
 
-function restaurantEmployees() {
-  return(knex('employees').join('restaurants', 'employees.restaurant_id', 'restaurants.id'));
+function restaurantEmployees(id) {
+  console.log('emp id is:', id);
+  return(knex('restaurants').rightJoin('employees', 'employees.restaurant_id', 'restaurants.id').where('restaurant_id', id));
 };
-//   return (knex.select('employees.first_name', 'employees.last_name', 'restaurants.name', 'restaurants.id').from('restaurants').join('employees', 'restaurants.id', 'employees.restaurantID'));
-// };
 
 function restaurantDefaults() {
  return (knex('restaurants').columnInfo().then(function (columns) {
