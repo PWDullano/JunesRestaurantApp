@@ -34,9 +34,22 @@ router.get ('/admin', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   console.log('***reqParamId = ', req.params.id);
-  db.restaurant(req.params.id).then(function(restaurants) {db.restaurantEmployees(req.params.id).then(function(employees) {
-    res.render('show', {restaurant:restaurants[0], employees:employees});
+  db.restaurant(req.params.id).then(function(restaurants) {
+    db.restaurantReviews(req.params.id).then(function(reviews) {
+    res.render('show', {restaurant:restaurants[0], reviews:reviews});
     })
+  })
+})
+
+router.get ('/admin/new', function(req, res, next) {
+  db.employeeDefaults().then(function(results) {
+    res.render('new', {route:req.originalUrl, employee:results});
+  });
+});
+
+router.post('/admin/new', function(req, res, next) {
+  db.insertEmployee(req.body).then(function(results) {
+    res.redirect('/admin');
   })
 })
 
@@ -70,6 +83,7 @@ router.get('/:id/admin/edit', function(req, res, next) {
     res.render('admin/edit',
     {route: req.originalUrl,
     restaurant: restaurants[0],
+    employees: employees,
     states: states,
     cuisines: cuisines,
     ratings: ratings});
@@ -82,5 +96,18 @@ router.post('/:id/admin/edit', function(req, res, next) {
     res.redirect('/admin');
   })
 })
+
+router.get('/:id/admin/delete', function(req, res, next) {
+  db.deleteEmployee(req.params.id).then(function(results) {
+    res.redirect('/admin');
+  })
+})
+
+router.post('/:id/admin/delete', function(req, res, next) {
+  db.deleteEmployee(req.params.id).then(function() {
+    res.redirect('/admin');
+  })
+})
+
 
 module.exports = router;

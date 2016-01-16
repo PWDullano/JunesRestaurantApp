@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin</title>
-    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script> -->
+    <title>restaurants</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
   <body>
     <header>
+      <h2><%= restaurant.name %></h2>
     </header>
     <main>
-      <section class = "scrollable">
-        <table>
-        <%
-         restaurants.forEach(function(restaurant) {
-          console.log(restaurant); %>
-          <section>
-            <h3><%=restaurant.name%></h3>
-            <%- include ../layouts/ratingLayout.ejs %>
-          </section>
-        } %>
+      <section id = "restaurantImage">
+        <img src="<%=restaurant.image%>" alt="restaurant image">
+      </section>
+      <section id = "restaurantInfo">
+        <section>
+          <%console.log('in show***',restaurant); %>
+        <span><%=restaurant.cuisine+ ' cuisine'%></span><br>
+        <span>Located in <%= restaurant.city%>,
+        <%= restaurant.state%></span><br>
+        <p><%= restaurant.description%></p>
+        <section>
+          <span>Rating:</span>
+          <%for (i=0; i< restaurant.rating; i++)
+          { %>
+           <i class="fa fa-star"></i>
+         <% }; %>
         </section>
+        <section>
+          <%
+          reviews.forEach(function(review) {
+          %>
+            <span><%= review.date %></span>
+            <%for (i=0; i< review.rating; i++)
+            { %>
+             <i class="fa fa-star"></i>
+            <% }; %>
+            <p><%= review.content %></p>
+          <% }) %>
+        </section>
+        <a href="<%= '/' + restaurant.id + '/edit'%>">
+          <button class = "goButton">Edit</button>
+        </a>
+        <a href="<%= '/' + restaurant.id + '/delete'%>">
+          <button class = "stopButton">Delete</button>
+        </a>
+        </section>
+      </section>
     </main>
   </body>
 </html>
