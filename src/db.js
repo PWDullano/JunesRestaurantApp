@@ -5,17 +5,21 @@ var knex = require ('knex')({
   connection: 'postgres://localhost/venues'
 });
 
-function restaurants() {
+function Restaurants() {
   return knex('restaurants');
+}
+
+function Employees() {
+  return knex('employees');
 }
 
 function restaurantEmployees(id) {
   console.log('emp id is:', id);
-  return(knex('restaurants').rightJoin('employees', 'employees.restaurant_id', 'restaurants.id').where('restaurant_id', id));
+  return(Restaurants().rightJoin('employees', 'employees.restaurant_id', 'restaurants.id').where('restaurant_id', id));
 };
 
 function restaurantDefaults() {
- return (knex('restaurants').columnInfo().then(function (columns) {
+ return (Restaurants().columnInfo().then(function (columns) {
    console.log('columninfo = ', columns)
     var restaurantObject = {};
     for (var key in columns) {
@@ -26,45 +30,60 @@ function restaurantDefaults() {
   })
 )}
 
+function employeeDefaults() {
+ return (Employees().columnInfo().then(function (columns) {
+   console.log('columninfo = ', columns)
+    var employeeObject = {};
+    for (var key in columns) {
+      employeeObject[key] = columns[key].defaultValue;
+      console.log(employeeObject);
+    }
+    return(employeeObject);
+  })
+)}
+
 function insertRestaurant(restaurant) {
-  return(restaurants().insert(restaurant));
+  return(Restaurants().insert(restaurant));
 }
 
 function restaurant(id) {
-  return(restaurants().where('id', id))
+  return(Restaurants().where('id', id))
 }
 
 function updateRestaurant(id, restaurant) {
-  return(restaurants().where('id', id).update(restaurant));
+  return(Restaurants().where('id', id).update(restaurant));
 }
 
 function deleteRestaurant(id) {
-  return( restaurants().where('id', id).del());
+  return( (Employees().leftJoin('restaurants', 'employees.restaurant_id', 'restaurants.id').where('id', id).del()).then(restaurant(id).del()));
 }
 
 function insertEmployee(employee) {
-  return(employees().insert(employee));
+  return(Employees().insert(employee));
 }
 
 function employee(id) {
-  return(employees().where('id', id))
+  return(Employees().where('id', id))
 }
 
 function updateEmployee(id, employee) {
-  return(employees().where('id', id).update(employee));
+  console.log('updating employee:', id, employee);
+
+  return(Employees().where('id', id).update(employee));
 }
 
 function deleteEmployee(id) {
-  return( employees().where('id', id).del());
+  return(Employees().where('id', id).del());
 }
 
 function restaurantReviews(id) {
-  return ( knex('restaurants').join('reviews', 'restaurants.id', 'reviews.restaurant_id').select('reviews.content', 'reviews.date', 'reviews.rating'));
+  return (Restaurants().join('reviews', 'restaurants.id', 'reviews.restaurant_id').select('reviews.content', 'reviews.date', 'reviews.rating'));
 }
 
 module.exports =
-{restaurants: restaurants,
+{Restaurants: Restaurants,
 restaurantDefaults: restaurantDefaults,
+employeeDefaults: employeeDefaults,
 restaurantEmployees: restaurantEmployees,
 restaurantReviews: restaurantReviews,
 insertRestaurant: insertRestaurant,

@@ -8,7 +8,7 @@ var ratings = require("./ratings.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  db.restaurants().then(function(results) {
+  db.Restaurants().then(function(results) {
     res.render('index', {restaurants:results});
   });
 });
@@ -27,25 +27,12 @@ router.post ('/new', function(req, res, next) {
 
 router.get ('/admin', function(req, res, next) {
   console.log('in admin page');
-    db.restaurants().then(function(restaurants) {
+    db.Restaurants().then(function(restaurants) {
       res.render('admin/index', {restaurants:restaurants});
     })
   });
 
-router.get ('/admin/new', function(req, res, next) {
-  db.employeeDefaults().then(function(results) {
-    res.render('new', {route:req.originalUrl, employee:results});
-  });
-});
-
-router.post('/admin/new', function(req, res, next) {
-  db.insertEmployee(req.body).then(function(results) {
-    res.redirect('/admin');
-  })
-})
-
 router.get('/:id', function(req, res, next) {
-  console.log('***reqParamId = ', req.params.id);
   db.restaurant(req.params.id).then(function(restaurants) {
     db.restaurantReviews(req.params.id).then(function(reviews) {
       res.render('show', {restaurant:restaurants[0], reviews:reviews});
@@ -54,9 +41,9 @@ router.get('/:id', function(req, res, next) {
 })
 
 router.get('/:id/edit', function(req, res, next) {  console.log('get id/edit');
-  db.restaurant(req.params.id).then(function(results) {
-    res.render('edit', {route:req.originalUrl, restaurant:results[0], states:states, cuisines:cuisines, ratings:ratings});
-  })
+db.restaurant(req.params.id).then(function(results) {
+  res.render('edit', {route:req.originalUrl, restaurant:results[0], states:states, cuisines:cuisines, ratings:ratings});
+})
 })
 
 router.post('/:id/edit', function(req, res, next) {
@@ -80,7 +67,6 @@ router.post('/:id/delete', function(req, res, next) {
 router.get('/:id/admin/edit', function(req, res, next) {
   db.restaurant(req.params.id).then(function(restaurants) {
     db.restaurantEmployees(req.params.id).then(function(employees) {
-      console.log('employees = ', employees);
     res.render('admin/edit',
     {route: req.originalUrl,
     restaurant: restaurants[0],
@@ -99,13 +85,37 @@ router.post('/:id/admin/edit', function(req, res, next) {
 })
 
 router.get('/:id/admin/delete', function(req, res, next) {
-  db.deleteEmployee(req.params.id).then(function(results) {
+  db.deleteRestaurant(req.params.id).then(function(results) {
     res.redirect('/admin');
   })
 })
 
 router.post('/:id/admin/delete', function(req, res, next) {
   db.deleteEmployee(req.params.id).then(function() {
+    res.redirect('/admin');
+  })
+})
+
+router.get ('/:id/admin/edit/newEmployee', function(req, res, next) {
+  db.employeeDefaults().then(function(results) {
+    res.render('admin/newEmployee', {route:req.originalUrl, employee:results, restaurant_id:req.params.id});
+  });
+});
+
+router.post('/:id/admin/edit/newEmployee', function(req, res, next) {
+  db.insertEmployee(req.body).then(function(results) {
+    res.redirect('/admin');
+  })
+})
+
+router.get ('/:id/admin/edit/employee', function(req, res, next) {
+  db.employee(req.params.id).then(function(employees) {
+    res.render('admin/employee', {route:req.originalUrl, employee:employees[0], restaurant_id:req.params.id});
+  });
+});
+
+router.post('/:id/admin/edit/employee', function(req, res, next) {
+  db.updateEmployee(req.params.id, req.body).then(function(results) {
     res.redirect('/admin');
   })
 })

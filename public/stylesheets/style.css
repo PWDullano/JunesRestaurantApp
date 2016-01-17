@@ -65,9 +65,9 @@ nav{
 }
 
 #submitButtons {
-  align: bottom-right;
+  /*align: bottom-right;
   position: absolute;
-  right: 20px;
+  right: 20px;*/
   width: 20%;
   height: 20px;
 }
@@ -172,4 +172,8 @@ fieldset {
 #description {
   height: 60px;
   width: 300px;
+}
+
+.noLinkColor {
+  color: inherit;
 }
