@@ -42,6 +42,7 @@ function insertRestaurant(restaurant) {
 }
 
 function restaurant(id) {
+  console.log("in restaurant retrieve: ", id);
   return(Restaurants().where('id', id))
 }
 
@@ -50,8 +51,12 @@ function updateRestaurant(id, restaurant) {
 }
 
 function deleteRestaurant(id) {
-  return( (Employees().leftJoin('restaurants', 'employees.restaurant_id', 'restaurants.id').where('id', id).del()).then(restaurant(id).del()));
-}
+  console.log('in delete restaurant');
+  return(Employees().leftJoin('restaurants', 'restaurants.id', 'employees.restaurant_id').where('restaurant_id', id).del().then (function () {
+    console.log('about to delete restaurant of ', id)
+     restaurant(id).del();
+  })
+)}
 
 function insertEmployee(employee) {
   return(Employees().insert(employee));

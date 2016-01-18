@@ -57,12 +57,12 @@ router.get('/:id/delete', function(req, res, next) {
     res.redirect('/');
   })
 })
-
-router.post('/:id/delete', function(req, res, next) {
-  db.deleteRestaurant(req.params.id).then(function() {
-    res.redirect('/');
-  })
-})
+//
+// router.post('/:id/delete', function(req, res, next) {
+//   db.deleteRestaurant(req.params.id).then(function() {
+//     res.redirect('/');
+//   })
+// })
 
 router.get('/:id/admin/edit', function(req, res, next) {
   db.restaurant(req.params.id).then(function(restaurants) {
