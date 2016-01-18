@@ -41,6 +41,10 @@ header a {
   color: white;
 }
 
+header h1 {
+  margin: 5px;
+}
+
 a {
   text-decoration: none;
 }
@@ -61,9 +65,9 @@ nav{
 }
 
 #submitButtons {
-  align: bottom-right;
+  /*align: bottom-right;
   position: absolute;
-  right: 20px;
+  right: 20px;*/
   width: 20%;
   height: 20px;
 }
@@ -87,7 +91,7 @@ span {
 }
 
 #restaurantInfo {
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   justify-content:center;
   vertical-align: bottom;
@@ -133,6 +137,11 @@ legend
   background-color: #7FC378;
 }
 
+.blueButton
+{
+  background-color: #7BA8D5;
+}
+
 .stopButton
 {
   background-color: #F06C53;
@@ -168,4 +177,15 @@ fieldset {
 #description {
   height: 60px;
   width: 300px;
+}
+
+.noLinkColor {
+  color: inherit;
+}
+
+.review {
+  width: 300px;
+  height: 100px;
+  padding: 5px;
+  border: solid 3px #79C273;
 }

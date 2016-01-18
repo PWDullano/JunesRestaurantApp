@@ -1,12 +1,13 @@
 <form class="restaurantInfo" action="<%=route %>" method="post">
   <fieldset>
     <legend>
-      <% if (route!='/new') { %>
+      <% if (route!='admin/new') { %>
         Edit
       <% } else { %>
         New
       <% } %>
-      Restaurant</legend>
+      Employee
+    </legend>
     <section class = "col-1-3">
       <label for="name">Name</label><br>
       <input type="text" name="name" id="name"
@@ -27,34 +28,40 @@
       <select name = "cuisine" id="cuisine" onchange="alert('here'); $('#image').attr('src','../images/pho.png'));">
       <% cuisines.forEach(function(cuisine) { %>
         <option value ='<%= cuisine.name %>'
-          <% if(route!='/new') {
-            if (restaurant.cuisine === cuisine.name) { %>
-              selected = 'selected'
-            <% }} %>>
-            <%=cuisine.name%></option>
+        <% if(route!='/new') {
+          if (restaurant.cuisine === cuisine.name) { %>
+          selected = 'selected'
+        <% }} %>>
+        <%=cuisine.name%>
+        </option>
       <% }) %>
-    </select><br><br>
-    <% for (i=0; i<ratings; i++) { %>
-
-    <input type="radio" name="rating" value=<%=i+1%>
-    <% if (restaurant.rating === (i+1)) { %>
-      checked = "checked";
-    <% } %>>
-    <% } %><br>
+      </select><br><br>
+      <% for (i=0; i<ratings; i++) { %>
+        <input type="radio" name="rating" value=<%=i+1%>
+        <% if (restaurant.rating === (i+1)) { %>
+          checked = "checked";
+        <% } %>>
+      <% } %>
+      <br>
 
       <label for="imageUrl">Image</label>
       <input type="text" name="image" id="imageUrl"
       value = "<%=restaurant.image%>"><br><br>
-      <textarea name = "description" id = "description"><% if (route != '/new') {%><%=restaurant.description %> <%} %></textarea><br>
-    </section>
-    <section class ="col-2-3">
-      <img id = "image" src= "<%= restaurant.image %>"/>
+      <textarea name = "description" id = "description">
+      <% if (route != '/new') {%>
+        <%=restaurant.description %>
+      <%}
+      </textarea><br>
       <section id = "submitButtons">
         <input type="submit" value="Submit" class = "goButton">
         <a href="<%= '/' + restaurant.id%>">
           <button type = "button" class = "stopButton">Cancel</button>
         </a>
       </section>
-    </section>
-  </fieldset>
-</form>
+    </fieldset>
+  </form>
+</section>
+<section class ="col-1-3">
+  <img id = "image" src= "<%= restaurant.image %>"/>
+</section>
+<section class = "col-1-3"></section>

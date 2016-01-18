@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>restaurants</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+  </head>
+  <body>
+    <header>
+      <h1>Admin</h1>
+    </header>
+    <main>
+
+      <div id = "restaurantGalleryAdmin">
+        <% restaurants.forEach(function(restaurant) { %>
+          <section  id = "foobar">
+            <span><%= restaurant.name %></span></a>
+            <%- include ../layouts/ratingLayout.ejs %>
+          <a href = "<%= '/' + restaurant.id + '/admin/edit' %>">
+            <button type = "button" class = "goButton">Edit</button>
+          </a>
+          <a href = "<%= '/' + restaurant.id + '/admin/delete' %>">
+            <button type = "button" class = "stopButton">Delete</button>
+          </a>
+          </section>
+          <% }); %>
+      </div>
+    </main>
+  </body>
+</html>
