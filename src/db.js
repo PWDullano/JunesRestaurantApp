@@ -2,7 +2,7 @@
 // var db = require('pg');
 var knex = require ('knex')({
   client:'pg',
-  connection: process.env.DATABASE_URL || 'postgres://localhost/venues'
+  connection: 'postgres://localhost/venues'
 });
 
 function Restaurants() {
