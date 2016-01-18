@@ -91,7 +91,7 @@ span {
 }
 
 #restaurantInfo {
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   justify-content:center;
   vertical-align: bottom;
@@ -181,4 +181,11 @@ fieldset {
 
 .noLinkColor {
   color: inherit;
+}
+
+.review {
+  width: 300px;
+  height: 100px;
+  padding: 5px;
+  border: solid 3px #79C273;
 }

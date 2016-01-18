@@ -14,10 +14,10 @@
         <img src="<%=restaurant.image%>" alt="restaurant image">
       </section>
       <section id = "restaurantInfo">
-        <section>
-        <span><%=restaurant.cuisine+ ' cuisine'%></span><br>
+        <span><%=restaurant.cuisine+ ' cuisine'%></span>
+
         <span>Located in <%= restaurant.city%>,
-        <%= restaurant.state%></span><br>
+        <%= restaurant.state%></span>
         <p><%= restaurant.description%></p>
         <section>
           <span>Rating:</span>
@@ -25,29 +25,33 @@
           { %>
            <i class="fa fa-star"></i>
          <% }; %>
+         <br> <br>
+        </section>
+        <section>
+          <a href="<%= '/' + restaurant.id + '/edit'%>">
+            <button class = "goButton">Edit</button>
+          </a>
+          <a href="<%= '/' + restaurant.id + '/delete'%>">
+            <button class = "stopButton">Delete</button>
+          </a>
+          <a href="<%= '/' + restaurant.id + '/review/newReview'%>">
+            <button class = "blueButton">Review</button>
+          </a>
         </section>
         <section>
           <%
           reviews.forEach(function(review) {
-          %>
-            <span><%= review.date %></span>
-            <%for (i=0; i< review.rating; i++)
-            { %>
-             <i class="fa fa-star"></i>
-            <% }; %>
-            <p><%= review.content %></p>
-          <% }) %>
-        </section>
-        <a href="<%= '/' + restaurant.id + '/edit'%>">
-          <button class = "goButton">Edit</button>
-        </a>
-        <a href="<%= '/' + restaurant.id + '/delete'%>">
-          <button class = "stopButton">Delete</button>
-        </a>
-        <a href="<%= '/' + restaurant.id + '/review/newReview'%>">
-          <button class = "blueButton">Review</button>
-        </a>
-        </section>
+            %>
+            <section class = "review">
+              <span><%= review.date %></span>
+              <%for (i=0; i< review.rating; i++)
+              { %>
+                <i class="fa fa-star"></i>
+                <% }; %>
+                <p><%= review.content %></p>
+                <% }) %>
+              </section>
+            </section>
       </section>
     </main>
   </body>

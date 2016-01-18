@@ -89,6 +89,8 @@ function deleteEmployee(id) {
 }
 
 function insertReview(review) {
+  console.log('insertReview with ', review);
+  console.log();
   return(Reviews().insert(review));
 }
 

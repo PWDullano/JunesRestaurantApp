@@ -59,17 +59,17 @@ router.get('/:id/delete', function(req, res, next) {
 })
 
 router.get('/:id/review/newReview', function(req, res, next) {
-  db.reviewDefaults().then(function(results) {
+  db.reviewDefaults().then(function(reviews) {
     res.render('review',
     {route:req.originalUrl,
-      review:results,
+      review:reviews,
       restaurant_id:req.params.id,
       ratings: ratings});
   })
 })
 
 router.post('/:id/review/newReview', function(req, res, next) {
-  db.insertReview(req.params.id, req.body).then(function() {
+  db.insertReview(req.body).then(function() {
     res.redirect('/' + req.params.id);
   })
 })
