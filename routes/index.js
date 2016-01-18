@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var url = require('url');
 
-var db = require("./src/db.js");
+var db = require("../src/db.js");
 var states = require("./states.js");
 var cuisines = require("./cuisines.js");
 var ratings = require("./ratings.js");
