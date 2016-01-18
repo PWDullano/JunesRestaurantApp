@@ -13,6 +13,10 @@ function Employees() {
   return knex('employees');
 }
 
+function Reviews() {
+  return knex('reviews');
+}
+
 function restaurantEmployees(id) {
   return(Restaurants().rightJoin('employees', 'employees.restaurant_id', 'restaurants.id').where('restaurant_id', id));
 };
@@ -29,11 +33,21 @@ function restaurantDefaults() {
 
 function employeeDefaults() {
  return (Employees().columnInfo().then(function (columns) {
-    var employeeObject = {};
+    var Object = {};
     for (var key in columns) {
-      employeeObject[key] = columns[key].defaultValue;
+      Object[key] = columns[key].defaultValue;
     }
-    return(employeeObject);
+    return(Object);
+  })
+)}
+
+function reviewDefaults() {
+  return (Reviews().columnInfo().then(function (columns) {
+    var reviewObject = {};
+    for (var key in columns) {
+      reviewObject[key] = columns[key].defaultValue;
+    }
+    return(reviewObject);
   })
 )}
 
@@ -52,7 +66,7 @@ function updateRestaurant(id, restaurant) {
 
 function deleteRestaurant(id) {
   console.log('in delete restaurant');
-  return(Employees().leftJoin('restaurants', 'restaurants.id', 'employees.restaurant_id').where('restaurant_id', id).del().then (function () {
+  return(Employees().leftJoin('restaurants', 'restaurants.id', 's.restaurant_id').where('restaurant_id', id).del().then (function () {
     console.log('about to delete restaurant of ', id)
      restaurant(id).del();
   })
@@ -74,6 +88,22 @@ function deleteEmployee(id) {
   return(Employees().where('id', id).del());
 }
 
+function insertReview(review) {
+  return(Reviews().insert(review));
+}
+
+function review(id) {
+  return(Reviews().where('id', id))
+}
+
+function updateReview(id, review) {
+  return(Reviews().where('id', id).update(review));
+}
+
+function deleteReview(id) {
+  return(Reviews().where('id', id).del());
+}
+
 function restaurantReviews(id) {
   return (Restaurants().join('reviews', 'restaurants.id', 'reviews.restaurant_id').select('reviews.content', 'reviews.date', 'reviews.rating'));
 }
@@ -82,6 +112,7 @@ module.exports =
 {Restaurants: Restaurants,
 restaurantDefaults: restaurantDefaults,
 employeeDefaults: employeeDefaults,
+reviewDefaults: reviewDefaults,
 restaurantEmployees: restaurantEmployees,
 restaurantReviews: restaurantReviews,
 insertRestaurant: insertRestaurant,
@@ -91,4 +122,10 @@ deleteRestaurant: deleteRestaurant,
 insertEmployee: insertEmployee,
 employee: employee,
 updateEmployee: updateEmployee,
-deleteEmployee: deleteEmployee}
+deleteEmployee: deleteEmployee,
+insertReview: insertReview,
+review: review,
+updateReview: updateReview,
+deleteReview: deleteReview,
+restaurantReviews: restaurantReviews
+}

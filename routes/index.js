@@ -57,6 +57,38 @@ router.get('/:id/delete', function(req, res, next) {
     res.redirect('/');
   })
 })
+
+router.get('/:id/review/newReview', function(req, res, next) {
+  db.reviewDefaults().then(function(results) {
+    res.render('review',
+    {route:req.originalUrl,
+      review:results,
+      restaurant_id:req.params.id,
+      ratings: ratings});
+  })
+})
+
+router.post('/:id/review/newReview', function(req, res, next) {
+  db.insertReview(req.params.id, req.body).then(function() {
+    res.redirect('/' + req.params.id);
+  })
+})
+
+router.get('/:id/review/:review', function(req, res, next) {
+  db.review(req.params.review).then(function(review) {
+    res.render('review',
+    {route:req.originalUrl,
+    review: review,
+    restaurant_id: req.params.id,
+    ratings: ratings});
+  })
+})
+
+router.post('/:id/review/:review_id', function(req, res, next) {
+  db.updateReview(req.params.review_id, req.body).then(function() {
+    res.redirect('/' + req.params.id);
+  })
+})
 //
 // router.post('/:id/delete', function(req, res, next) {
 //   db.deleteRestaurant(req.params.id).then(function() {
