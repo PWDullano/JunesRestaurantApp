@@ -14,17 +14,14 @@ function Employees() {
 }
 
 function restaurantEmployees(id) {
-  console.log('emp id is:', id);
   return(Restaurants().rightJoin('employees', 'employees.restaurant_id', 'restaurants.id').where('restaurant_id', id));
 };
 
 function restaurantDefaults() {
  return (Restaurants().columnInfo().then(function (columns) {
-   console.log('columninfo = ', columns)
     var restaurantObject = {};
     for (var key in columns) {
       restaurantObject[key] = columns[key].defaultValue;
-      console.log(restaurantObject);
     }
     return(restaurantObject);
   })
@@ -32,11 +29,9 @@ function restaurantDefaults() {
 
 function employeeDefaults() {
  return (Employees().columnInfo().then(function (columns) {
-   console.log('columninfo = ', columns)
     var employeeObject = {};
     for (var key in columns) {
       employeeObject[key] = columns[key].defaultValue;
-      console.log(employeeObject);
     }
     return(employeeObject);
   })
@@ -67,8 +62,6 @@ function employee(id) {
 }
 
 function updateEmployee(id, employee) {
-  console.log('updating employee:', id, employee);
-
   return(Employees().where('id', id).update(employee));
 }
 

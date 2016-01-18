@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var url = require('url');
 
 var db = require('../src/db.js');
 var states = require("./states.js");
@@ -26,7 +27,6 @@ router.post ('/new', function(req, res, next) {
 })
 
 router.get ('/admin', function(req, res, next) {
-  console.log('in admin page');
     db.Restaurants().then(function(restaurants) {
       res.render('admin/index', {restaurants:restaurants});
     })
@@ -40,7 +40,7 @@ router.get('/:id', function(req, res, next) {
   })
 })
 
-router.get('/:id/edit', function(req, res, next) {  console.log('get id/edit');
+router.get('/:id/edit', function(req, res, next) {
 db.restaurant(req.params.id).then(function(results) {
   res.render('edit', {route:req.originalUrl, restaurant:results[0], states:states, cuisines:cuisines, ratings:ratings});
 })
@@ -79,6 +79,7 @@ router.get('/:id/admin/edit', function(req, res, next) {
 })
 
 router.post('/:id/admin/edit', function(req, res, next) {
+  console.log('in the id/admin/edit');
   db.updateRestaurant(req.params.id, req.body).then(function() {
     res.redirect('/admin');
   })
@@ -103,20 +104,28 @@ router.get ('/:id/admin/edit/newEmployee', function(req, res, next) {
 });
 
 router.post('/:id/admin/edit/newEmployee', function(req, res, next) {
+  console.log('req.params.id = ', req.params.id);
   db.insertEmployee(req.body).then(function(results) {
-    res.redirect('/admin');
+    var urlString = '/' + req.params.id + '/admin/edit';
+    console.log('urlString = ', urlString);
+    res.redirect(urlString);
   })
 })
 
-router.get ('/:id/admin/edit/employee', function(req, res, next) {
-  db.employee(req.params.id).then(function(employees) {
+router.get ('/:id/admin/edit/employee/:employee_id', function(req, res, next) {
+  console.log('employee id= *** ', req.params.employee_id);
+  db.employee(req.params.employee_id).then(function(employees) {
     res.render('admin/employee', {route:req.originalUrl, employee:employees[0], restaurant_id:req.params.id});
+
+    //  restaurant_id:req.params.id});
   });
 });
 
-router.post('/:id/admin/edit/employee', function(req, res, next) {
-  db.updateEmployee(req.params.id, req.body).then(function(results) {
-    res.redirect('/admin');
+router.post('/:id/admin/edit/employee/:employee_id', function(req, res, next) {
+  db.updateEmployee(req.params.employee_id, req.body).then(function(results) {
+    console.log('req.params.id = ', req.params.id);
+    console.log('employee id= *** ', req.params.employee_id);
+    res.redirect('/' + req.params.id + '/admin/edit');
   })
 })
 

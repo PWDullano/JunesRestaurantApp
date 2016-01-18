@@ -1,21 +1,19 @@
 <form class="restaurantEmployees" action="<%=route %>" method="post">
   <fieldset>
     <legend>
-      <%console.log('route = !', route); %>
       <% if (route!='/new') { %>
         Employee
       <% } else { %>
         New Employee
       <% } %>
     </legend>
-    <%console.log('employee for form', employee);%>
     <label for="first_name">First Name</label><br>
     <input type="text" name="first_name" id="first_name" value = "<%=employee.first_name%>"><br>
     <label for="last_name">Last Name</label><br>
     <input type="text" name="last_name" id="last_name" value = "<%=employee.last_name%>"><br>
     <label for="Position">Position</label><br>
     <input type="text" name="position" id="Position" value = "<%=employee.position%>"><br>
-    <input type="hidden" name="restaurant_id" value=<%= employee.restaurant_id %>>
+    <input type="integer" name="restaurant_id" value=<%= restaurant_id %>>
 
 
     <section id = "submitButtons">
